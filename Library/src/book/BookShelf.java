@@ -14,9 +14,9 @@ public class BookShelf {
         return books;
     }
 
-    public Book getBook(String name) {
+    public Book getBook(String bookId) {
         for(Book book: books) {
-            if(book.getTitle().equals(name)) {
+            if(book.getBookId().equals(bookId)) {
                 return book;
             }
         }

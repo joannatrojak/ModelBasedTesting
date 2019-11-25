@@ -28,20 +28,24 @@ public class Library {
         return students;
     }
 
-    public void buyBookFromStand(String bookId, String studentId) {
+    public void rentBook(String bookId, String studentId) {
         Book b = getBook(bookId);
+        if(b == null) System.out.println("no books with this id");
+
         Student s = getStudent(studentId);
+        if(s == null) System.out.println("no students with this id");
+
         this.bookshelf.rentBook(b, s);
     }
-    public void returnBook(String bookId, String studentId) {
+    public void returnBook(String bookId, String studentId, String bookName) {
         Student s = getStudent(studentId);
-        Book b = getBook(bookId);
+        Book b = new Book(bookId, bookName);
         this.bookshelf.returnBook(b, s);
     }
 
     public Student getStudent(String studentId) {
         for(Student student: students) {
-            if(student.getName().equals(studentId)) {
+            if(student.getStudentId().equals(studentId)) {
                 return student;
             }
         }
@@ -51,10 +55,11 @@ public class Library {
     public boolean isRented(String bookId, String studentId) {
         Student s = getStudent(studentId);
         if(s == null) return false;
+        
         Book b = getBook(bookId);
-        if(b == null) return false;
-
-        if(s.getBook(b.title)== null) return false;
+        if(b != null) return false;
+        
+        if(s.getBook(bookId)== null) return false;
         else return true;
     }
 

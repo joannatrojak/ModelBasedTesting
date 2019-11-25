@@ -12,6 +12,8 @@ public class Student {
     public Student(String studentId, String name){
         this.studentId = studentId;
         this.name = name;
+        this.books = new ArrayList<>();
+
     }
 
     public String getName() {
@@ -33,9 +35,9 @@ public class Student {
     public ArrayList<Book> getBooks() {
         return books;
     }
-    public Book getBook(String name) {
+    public Book getBook(String bookId) {
         for(Book book: books) {
-            if(book.getTitle().equals(name)) {
+            if(book.getBookId().equals(bookId)) {
                 return book;
             }
         }
